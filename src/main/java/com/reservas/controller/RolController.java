@@ -52,4 +52,11 @@ public class RolController {
 		return "redirect:/views/roles/";
 	}
 
+	@GetMapping("/ver/{idRol}")
+	public String ver(@PathVariable(value = "idRol") long id, Model model) {
+		Rol rol=rolService.buscarPorID(id);
+		model.addAttribute("rol", rol);
+		return "/views/roles/ver";
+	}
+
 }
