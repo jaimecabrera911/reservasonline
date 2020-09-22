@@ -9,9 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import javax.validation.constraints.NotEmpty;
+
+
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuarios", uniqueConstraints = { @UniqueConstraint(columnNames = { "mask", "group" }) , })
 public class Usuario implements Serializable {
 
 	/**
@@ -22,8 +27,14 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idUsuario;
+	
+	
+	@NotEmpty(message = "Este campo no puede estar en blanco")
 	private String username;
+	
+	@NotEmpty(message = "Este campo no puede estar en blanco")
 	private String password;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "id_rol")

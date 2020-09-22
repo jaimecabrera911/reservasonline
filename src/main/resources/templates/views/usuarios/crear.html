@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org ">
 
-<head>
+<head th:replace="plantillas/template :: head">
 	<meta charset="utf-8">
 	<title th:text="${titulo}"></title>
 </head>
 
 <body>
 	<h1 th:text="${titulo}"></h1>
-	<form th:action="@{/views/usuarios/guardar}" th:object="${usuario}" method="post">
-		<label for="usuario">Usuario</label>
-		<input type="text" th:field="*{username}"></input>
-		<label for="password">Password</label>
-		<input type="password" th:field="*{password}"></input>
-		<label for="idRol">Rol</label>
-		<select th:field="*{idRol}">
-			<option value="">Seleccionar</option>
-			<option th:each="rol:${listaRoles}" th:value="${rol.idRol}" th:text="${rol.nombreRol}">
-			</option>
-		</select>
-		<input type="submit" value="Regitrar">
-	</form>
+	<div class="container">
+		<form th:action="@{/views/usuarios/guardar}" th:object="${usuario}" method="post">
+			<div class="form-group-row">
+				<label for="usuario">Usuario</label> <input type="text" th:field="*{username}"></input>
+				<div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+			</div>
+			<div class="form-group-row">
+				<label for="password">Password</label> 
+				<input type="password"th:field="*{password}"></input>
+				<div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+			</div>
+			<div class="form-group-row">
+				<label for="idRol">Rol</label> <select th:field="*{idRol}">
+					<option value="">Seleccionar</option>
+					<option th:each="rol:${listaRoles}" th:value="${rol.idRol}"
+						th:text="${rol.nombreRol}"></option>
+				</select>
+			</div>
+			<input type="submit" value="Regitrar">
+		</form>
+	</div>
 </body>
 
 </html>

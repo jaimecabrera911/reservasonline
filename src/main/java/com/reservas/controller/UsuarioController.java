@@ -2,9 +2,12 @@ package com.reservas.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,9 +48,17 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/guardar")
-	public String guardar(@ModelAttribute("usuario") Usuario usuario) {
-		System.out.println(usuario);
+	public String guardar(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult result, Model model) {
+		List<Rol> listaRoles = rolService.listarRoles();
+		if (result.hasErrors()) {
+			model.addAttribute("titulo", "Registro Usuarios");
+			model.addAttribute("listaRoles", listaRoles);
+			model.addAttribute("usuario", usuario);
+			System.out.println(result);
+			return("/views/usuarios/crear");
+		}
 		usuarioService.guardar(usuario);
+		System.out.println("Usuario creado con exito");
 		return ("redirect:/views/usuarios/");
 	}
 
@@ -58,7 +69,6 @@ public class UsuarioController {
 		model.addAttribute("usuario", usuario);
 		return ("/views/usuarios/ver");
 	}
-	
 
 	@GetMapping("/editar/{idUsuario}")
 	public String editar(@PathVariable(value = "idUsuario") long id, Model model) {
@@ -69,7 +79,7 @@ public class UsuarioController {
 		model.addAttribute("usuario", usuario);
 		return ("/views/usuarios/editar");
 	}
-	
+
 	@GetMapping("/eliminar/{idUsuario}")
 	public String eliminar(@PathVariable(value = "idUsuario") long id) {
 		usuarioService.eliminar(id);
