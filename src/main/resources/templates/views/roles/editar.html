@@ -7,10 +7,11 @@
 <body>
 	<form method="post" th:action="@{/views/roles/guardar}" th:object="${rol}">
 		<h1 th:text="${titulo}"></h1>
+		<label for="nombreRol">Id Rol</label>
+		<input type="text" th:field="*{idRol}" readonly="readonly">
 		<label for="nombreRol">Nombre del Rol</label>
 		<input type="text" th:field="*{nombreRol}" required="required">
-		<input type="submit" value="Crear"/>
+		<input type="submit" value="Editar"/>
 	</form>
-
 </body>
 </html>

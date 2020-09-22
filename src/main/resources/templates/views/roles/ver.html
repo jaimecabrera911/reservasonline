@@ -5,6 +5,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p th:text="${rol.nombreRol}"></p>
+	<table border="1">
+  <tr>
+    <th>Id Rol</th>
+    <th>Nombre Rol</th>
+  </tr>
+  <tr>
+    <th scope="row" th:text="${rol.idRol}"></th>
+    <td th:text="${rol.nombreRol}"></td>
+  </tr>
+</table>
+
 </body>
 </html>

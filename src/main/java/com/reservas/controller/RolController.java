@@ -45,6 +45,22 @@ public class RolController {
 		}
 		return "views/roles/";
 	}
+	
+	@GetMapping("/ver/{idRol}")
+	public String ver(@PathVariable(value = "idRol") long id, Model model) {
+		Rol rol=rolService.buscarPorID(id);
+		model.addAttribute("rol", rol);
+		return "/views/roles/ver";
+	}
+	
+	
+	@GetMapping("/editar/{idRol}")
+	public String editar(@PathVariable(value = "idRol") long idRol, Model model) {
+		Rol rol=rolService.buscarPorID(idRol);
+		model.addAttribute("titulo","Modificar Cliente");
+		model.addAttribute("rol", rol);
+		return "/views/roles/editar";
+	}
 
 	@GetMapping("/eliminar/{idRol}")
 	public String eliminar(@PathVariable(value = "idRol") long id) {
@@ -52,11 +68,6 @@ public class RolController {
 		return "redirect:/views/roles/";
 	}
 
-	@GetMapping("/ver/{idRol}")
-	public String ver(@PathVariable(value = "idRol") long id, Model model) {
-		Rol rol=rolService.buscarPorID(id);
-		model.addAttribute("rol", rol);
-		return "/views/roles/ver";
-	}
+	
 
 }
