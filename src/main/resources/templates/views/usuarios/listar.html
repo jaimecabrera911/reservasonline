@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1 th:text="${titulo}"></h1>
-
+	<a th:href="@{/views/usuarios/crear}">Crear</a>
 	<table border="1">
 		<tr>
 			<th>#</th>
@@ -17,13 +17,10 @@
 		</tr>
 		<tr th:each="usuario:${listaUsuarios}">
 			<th scope="row" th:text="${usuario.idUsuario}"></th>
-			<td th:text="${usuario.usuario}"></td>
+			<td th:text="${usuario.username}"></td>
 			<td th:text="${usuario.password}"></td>
 			<td th:text="${usuario.idRol.nombreRol}"></td>
-			<td>
-				<a href="#">Ver</a>
-				<a href="#">Editar</a>
-				<a href="#">Eliminar</a>
+			<td><a href="#">Ver</a> <a href="#">Editar</a> <a href="#">Eliminar</a>
 			</td>
 		</tr>
 	</table>

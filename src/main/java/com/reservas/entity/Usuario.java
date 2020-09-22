@@ -22,7 +22,7 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idUsuario;
-	private String usuario;
+	private String username;
 	private String password;
 
 	@ManyToOne
@@ -33,10 +33,10 @@ public class Usuario implements Serializable {
 		super();
 	}
 
-	public Usuario(long idUsuario, String usuario, String password, Rol idRol) {
+	public Usuario(long idUsuario, String username, String password, Rol idRol) {
 		super();
 		this.idUsuario = idUsuario;
-		this.usuario = usuario;
+		this.username = username;
 		this.password = password;
 		this.idRol = idRol;
 	}
@@ -49,12 +49,12 @@ public class Usuario implements Serializable {
 		this.idUsuario = idUsuario;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -79,7 +79,7 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [idUsuario=" + idUsuario + ", usuario=" + usuario + ", password=" + password + ", idRol="
+		return "Usuario [idUsuario=" + idUsuario + ", username=" + username + ", password=" + password + ", idRol="
 				+ idRol + "]";
 	}
 
