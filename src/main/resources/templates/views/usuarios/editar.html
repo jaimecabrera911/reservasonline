@@ -9,6 +9,8 @@
 <body>
 	<h1 th:text="${titulo}"></h1>
 	<form th:action="@{/views/usuarios/guardar}" th:object="${usuario}" method="post">
+		<label for="idUsuario">ID Usuario</label>
+		<input type="text" th:field="*{idUsuario}" readonly="readonly"></input>
 		<label for="usuario">Usuario</label>
 		<input type="text" th:field="*{username}"></input>
 		<label for="password">Password</label>
@@ -19,7 +21,7 @@
 			<option th:each="rol:${listaRoles}" th:value="${rol.idRol}" th:text="${rol.nombreRol}">
 			</option>
 		</select>
-		<input type="submit" value="Regitrar">
+		<input type="submit" value="Editar">
 	</form>
 </body>
 

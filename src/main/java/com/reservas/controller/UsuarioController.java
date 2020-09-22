@@ -57,4 +57,13 @@ public class UsuarioController {
 		return ("redirect:/views/usuarios/");
 	}
 
+	@GetMapping("/editar/{idUsuario}")
+	public String editar(@PathVariable(value = "idUsuario") long id, Model model) {
+		List<Rol> listaRoles = rolService.listarRoles();
+		Usuario usuario = usuarioService.buscarPorID(id);
+		model.addAttribute("titulo", "Editar Usuario");
+		model.addAttribute("listaRoles", listaRoles);
+		model.addAttribute("usuario", usuario);
+		return ("/views/usuarios/editar");
+	}
 }
