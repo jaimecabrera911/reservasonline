@@ -20,7 +20,7 @@
 			<td th:text="${usuario.username}"></td>
 			<td th:text="${usuario.password}"></td>
 			<td th:text="${usuario.idRol.nombreRol}"></td>
-			<td><a href="#">Ver</a> <a
+			<td><a th:href="@{ver/{id}(id=${usuario.idUsuario})}">Ver</a> <a
 				th:href="@{editar/{id}(id=${usuario.idUsuario})}">Editar</a> <a
 				th:href="@{eliminar/{id}(id=${usuario.idUsuario})}">Eliminar</a></td>
 

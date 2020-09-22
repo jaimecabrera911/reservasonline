@@ -51,11 +51,14 @@ public class UsuarioController {
 		return ("redirect:/views/usuarios/");
 	}
 
-	@GetMapping("/eliminar/{idUsuario}")
-	public String eliminar(@PathVariable(value = "idUsuario") long id) {
-		usuarioService.eliminar(id);
-		return ("redirect:/views/usuarios/");
+	@GetMapping("/ver/{idUsuario}")
+	public String ver(@PathVariable(value = "idUsuario") long id, Model model) {
+		Usuario usuario = usuarioService.buscarPorID(id);
+		model.addAttribute("titulo", "Ver Usuario");
+		model.addAttribute("usuario", usuario);
+		return ("/views/usuarios/ver");
 	}
+	
 
 	@GetMapping("/editar/{idUsuario}")
 	public String editar(@PathVariable(value = "idUsuario") long id, Model model) {
@@ -65,5 +68,11 @@ public class UsuarioController {
 		model.addAttribute("listaRoles", listaRoles);
 		model.addAttribute("usuario", usuario);
 		return ("/views/usuarios/editar");
+	}
+	
+	@GetMapping("/eliminar/{idUsuario}")
+	public String eliminar(@PathVariable(value = "idUsuario") long id) {
+		usuarioService.eliminar(id);
+		return ("redirect:/views/usuarios/");
 	}
 }
