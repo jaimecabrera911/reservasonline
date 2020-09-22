@@ -2,12 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title th:text="${titulo}"></title>
 </head>
 <body>
-	<h1>Roles</h1>
+	<h1 th:text="${titulo}"></h1>
 	<p th:text="${listaRoles}"></p>
-
+	
+	<a th:href="@{crear}">Crear</a>
 	<table border="1">
 		<tr>
 			<th>#</th>
