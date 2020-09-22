@@ -18,7 +18,8 @@
 		<tr th:each="rol:${listaRoles}">
 			<th th:text="${rol.idRol}"></th>
 			<td th:text="${rol.nombreRol}"></td>
-			<td><a href="#">Ver</a> <a href="#">Editar</a> <a href="#">Eliminar</a></td>
+			<td><a href="#">Ver</a> <a href="#">Editar</a> 
+			<a th:href="@{eliminar/{id}(id=${rol.idRol})}">Eliminar</a></td>
 		</tr>
 	</table>
 
